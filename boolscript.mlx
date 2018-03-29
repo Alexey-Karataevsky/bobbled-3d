@@ -1,0 +1,17 @@
+<!DOCTYPE FilterScript>
+<FilterScript>
+
+ <filter name="CSG Operation">
+  <Param description="First Mesh" tooltip="The first operand of the CSG operation" type="RichMesh" name="FirstMesh" value="0"/>
+  <Param description="Second Mesh" tooltip="The second operand of the CSG operation" type="RichMesh" name="SecondMesh" value="1"/>
+  <Param description="Spacing between sampling lines" tooltip="This parameter controls the accuracy of the result and the speed of the computation.The time and memory needed to perform the operation usually scale as the reciprocal square of this value.For optimal results, this value should be at most half the the smallest feature (i.e. the highest frequency) you want to reproduce." type="RichAbsPerc" min="0" max="14.9271" name="Delta" value="0.10"/>
+  <Param description="Discretization points per sample interval" tooltip="This is the number of points between the sampling lines to which the vertices can be rounded.Increasing this can marginally increase the precision and decrease the speed of the operation." type="RichInt" name="SubDelta" value="32"/>
+  <Param description="Operator" tooltip="Intersection takes the volume shared between the two meshes; Union takes the volume included in at least one of the two meshes; Difference takes the volume included in the first mesh but not in the second one" enum_val0="Intersection" enum_val1="Union" type="RichEnum" enum_val2="Difference" name="Operator" value="1" enum_cardinality="3"/>
+ </filter>
+
+ 
+
+
+
+
+</FilterScript>

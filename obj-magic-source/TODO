@@ -1,0 +1,38 @@
+TODO
+====
+
+Milestones: {v1.0} {v2.0} {v3.0}
+
+General:
+
+test cases for all operations {v1.0}
+--clean (deletes unreferenced coords adjusting indices)
+FILE [FILE...]
+GUI frontend? {v2.0}
+execute commands in the order they are given in command line {v2.0}
+
+Operations on vertices:
+
+--fit-individual[xyz] (max-min = size) {v1.0}
+--set-maximum[xyz] {v1.0}
+--set-maximum-individual[xyz] {v1.0}
+--flip-xy etc. (needs to flip normals too)
+
+Normals:
+
+--auto-normals [THRESHOLD-ANGLE]
+--smooth-normals
+--flat-normals
+
+Faces:
+
+--triangulate {v2.0}
+--smooth-tessellate {v3.0}
+
+Groups:
+
+--optimize-materials
+--delete-material MTL
+--delete-group GRP
+--delete-object OBJ
+

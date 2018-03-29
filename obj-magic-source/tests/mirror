@@ -1,0 +1,11 @@
+#!/bin/bash
+
+INFILE="$DATADIR/square.obj"
+OUTFILE="$TEMPDIR/mirror.obj"
+REFFILE="$DATADIR/square-mirror.obj"
+
+$BIN --mirror  "$INFILE" > "$OUTFILE"
+
+cmp -s "$REFFILE" "$OUTFILE"
+exit $?
+

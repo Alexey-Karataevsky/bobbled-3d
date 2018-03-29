@@ -1,0 +1,12 @@
+#!/bin/bash
+
+INFILE="$DATADIR/messy-square.obj"
+OUTFILE="$TEMPDIR/info.obj"
+REFFILE="$DATADIR/messy-square-info.obj"
+
+# Need to strip the file path as it's different based on file location
+$BIN --info  "$INFILE" | tail -n +3 > "$OUTFILE"
+
+cmp -s "$REFFILE" "$OUTFILE"
+exit $?
+

@@ -1,0 +1,20 @@
+<!DOCTYPE FilterScript>
+<FilterScript>
+
+<filter name="Vertex Attribute Transfer">
+  <Param description="Source Mesh" tooltip="The mesh that contains the source data that we want to transfer." type="RichMesh" name="SourceMesh" value="0"/>
+  <Param description="Target Mesh" tooltip="The mesh whose vertexes will receive the data from the source." type="RichMesh" name="TargetMesh" value="1"/>
+  <Param description="Transfer Geometry" tooltip="if enabled, the position of each vertex of the target mesh will be snapped onto the corresponding closest point on the source mesh" type="RichBool" name="GeomTransfer" value="false"/>
+  <Param description="Transfer Normal" tooltip="if enabled, the normal of each vertex of the target mesh will get the (interpolated) normal of the corresponding closest point on the source mesh" type="RichBool" name="NormalTransfer" value="false"/>
+  <Param description="Transfer Color" tooltip="if enabled, the color of each vertex of the target mesh will become the color of the corresponding closest point on the source mesh" type="RichBool" name="ColorTransfer" value="true"/>
+  <Param description="Transfer quality" tooltip="if enabled, the quality of each vertex of the target mesh will become the quality of the corresponding closest point on the source mesh" type="RichBool" name="QualityTransfer" value="false"/>
+  <Param description="Transfer Selection" tooltip="if enabled,  each vertex of the target mesh will be selected if the corresponding closest point on the source mesh falls in a selected face" type="RichBool" name="SelectionTransfer" value="false"/>
+  <Param description="Store dist. as quality" tooltip="if enabled, we store the distance of the transferred value as in the vertex quality" type="RichBool" name="QualityDistance" value="false"/>
+  <Param description="Max Dist Search" tooltip="Sample points for which we do not find anything whithin this distance are rejected and not considered for recovering attributes." type="RichAbsPerc" min="0" max="33.9696" name="UpperBound" value="0.3397"/>
+  <Param description="Only on selection" tooltip="If checked, only transfer to selected vertices on TARGET mesh" type="RichBool" name="onSelected" value="false"/>
+ </filter>
+
+
+ 
+</FilterScript>
+

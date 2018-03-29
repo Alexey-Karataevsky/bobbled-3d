@@ -1,0 +1,9 @@
+<!DOCTYPE FilterScript>
+<FilterScript>
+ <filter name="Compact faces"/>
+ <filter name="Compact vertices"/>
+ <filter name="Remove Faces from Non Manifold Edges"/>
+ <filter name="Remove Isolated Folded Faces by Edge Flip"/>
+ <filter name="Normalize Face Normals"/>
+ <filter name="Normalize Vertex Normals"/>
+</FilterScript>
