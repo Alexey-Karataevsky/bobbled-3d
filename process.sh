@@ -1,5 +1,7 @@
 echo Working with $1 file
 echo Working with $2 model
+echo Working with $3 rezult
+echo Working with $4 texture
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
@@ -14,7 +16,7 @@ rm $DIR/tmp/body.obj
 
 cp $1 $DIR/tmp/in.obj
 #cp $2 $DIR/tmp/body.obj
-cp $DIR/fixmesh.py $DIR/tmp/fixmesh.py
+#cp $DIR/fixmesh.py $DIR/tmp/fixmesh.py
 
 
 $DIR/obj-magic -o $DIR/tmp/1.obj  --center 0.0 --mirrory --scale 0.2  --normalize-normals $DIR/tmp/in.obj
@@ -27,15 +29,22 @@ $DIR/obj-magic -o $DIR/tmp/25.obj  --pScalex 12  --pScaley 18  --pScalez 24 $DIR
 
 $DIR/obj-magic -o $DIR/tmp/3.obj  --center 0.0  $DIR/tmp/25.obj
 
+/Applications/meshlab.app/Contents/MacOS/meshlabserver -i $DIR/tmp/3.obj -s $DIR/filter_file_fix_rotate2.mlx  -o  $DIR/tmp/3.obj -m vc
+
 $DIR/obj-magic -o $DIR/tmp/4.obj --rotatex 1.57 --rotatez 1.57 --rotatey 3.14   $DIR/tmp/3.obj 
 
-$DIR/obj-magic -o $DIR/tmp/5.obj   --rotatex 5.93412 --translatez 3.3 --translatey 1.3 $DIR/tmp/4.obj 
+$DIR/obj-magic -o $DIR/tmp/5.obj   --rotatex 5.93412 --translatez 3.8 --translatey 1.3 $DIR/tmp/4.obj 
 
 #docker run -v $DIR/tmp/:/var/3d/ -it qnzhou/pymesh python /var/3d/fixmesh.py
 
 #python $DIR/reduce_faces.py $DIR/tmp/rezult.obj 1
 
 #cp $DIR/tmp/union.obj $3
+
+
+
+/Applications/meshlab.app/Contents/MacOS/meshlabserver -i  $DIR/tmp/5.obj -s $DIR/skin.mlx 
+convert $DIR/tmp/tex.png +dither -colors 1 $4 
 
 /Applications/meshlab.app/Contents/MacOS/meshlabserver -i $DIR/tmp/5.obj -i $2 -s $DIR/boolscript.mlx  -o  $DIR/tmp/temp1.obj -m vc -o  $DIR/tmp/temp2.obj -m vc -o  $DIR/tmp/union.obj -m vc
 
@@ -51,4 +60,4 @@ cp $DIR/tmp/union.obj $3
 rm $DIR/tmp/temp1.obj
 rm $DIR/tmp/temp2.obj
 
-say model $1 ready
+say model ready

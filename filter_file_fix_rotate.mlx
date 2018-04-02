@@ -1,7 +1,7 @@
 <!DOCTYPE FilterScript>
 <FilterScript>
  <filter name="Transform: Align to Principal Axis">
-  <Param type="RichBool" value="false" name="FreezeMatrix"/>
+  <Param type="RichBool" value="true" name="FreezeMatrix"/>
   <Param type="RichBool" value="true" name="UseVertex"/>
  </filter>
 </FilterScript>
