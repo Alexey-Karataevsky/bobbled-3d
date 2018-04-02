@@ -5,6 +5,9 @@ echo Working with $4 texture
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
+#MLABSERVER = /Applications/meshlab.app/Contents/MacOS/meshlabserver
+MLABSERVER = xvfb-run --auto-servernum meshlabserver
+
 rm $DIR/tmp/in.obj #i know this fucking number must be 0!
 rm $DIR/tmp/1.obj
 rm $DIR/tmp/2.obj
@@ -23,13 +26,13 @@ $DIR/obj-magic -o $DIR/tmp/1.obj  --center 0.0 --mirrory --scale 0.2  --normaliz
 
 #python $DIR/fix_rotate.py $DIR/tmp/1.obj 1
 
-/Applications/meshlab.app/Contents/MacOS/meshlabserver -i $DIR/tmp/1.obj -s $DIR/filter_file_fix_rotate.mlx  -o  $DIR/tmp/2.obj -m vc
+$MLABSERVER -i $DIR/tmp/1.obj -s $DIR/filter_file_fix_rotate.mlx  -o  $DIR/tmp/2.obj -m vc
 
 $DIR/obj-magic -o $DIR/tmp/25.obj  --pScalex 12  --pScaley 18  --pScalez 24 $DIR/tmp/2.obj
 
 $DIR/obj-magic -o $DIR/tmp/3.obj  --center 0.0  $DIR/tmp/25.obj
 
-/Applications/meshlab.app/Contents/MacOS/meshlabserver -i $DIR/tmp/3.obj -s $DIR/filter_file_fix_rotate2.mlx  -o  $DIR/tmp/3.obj -m vc
+$MLABSERVER -i $DIR/tmp/3.obj -s $DIR/filter_file_fix_rotate2.mlx  -o  $DIR/tmp/3.obj -m vc
 
 $DIR/obj-magic -o $DIR/tmp/4.obj --rotatex 1.57 --rotatez 1.57 --rotatey 3.14   $DIR/tmp/3.obj 
 
@@ -43,16 +46,16 @@ $DIR/obj-magic -o $DIR/tmp/5.obj   --rotatex 5.93412 --translatez 3.8 --translat
 
 
 
-/Applications/meshlab.app/Contents/MacOS/meshlabserver -i  $DIR/tmp/5.obj -s $DIR/skin.mlx 
+$MLABSERVER -i  $DIR/tmp/5.obj -s $DIR/skin.mlx 
 convert $DIR/tmp/tex.png +dither -colors 1 $4 
 
-/Applications/meshlab.app/Contents/MacOS/meshlabserver -i $DIR/tmp/5.obj -i $2 -s $DIR/boolscript.mlx  -o  $DIR/tmp/temp1.obj -m vc -o  $DIR/tmp/temp2.obj -m vc -o  $DIR/tmp/union.obj -m vc
+$MLABSERVER -i $DIR/tmp/5.obj -i $2 -s $DIR/boolscript.mlx  -o  $DIR/tmp/temp1.obj -m vc -o  $DIR/tmp/temp2.obj -m vc -o  $DIR/tmp/union.obj -m vc
 
-/Applications/meshlab.app/Contents/MacOS/meshlabserver -i $DIR/tmp/5.obj -i  $DIR/tmp/union.obj -s $DIR/texture.mlx  -o  $DIR/tmp/temp1.obj -m vc  -o  $DIR/tmp/union.obj -m vc
+$MLABSERVER -i $DIR/tmp/5.obj -i  $DIR/tmp/union.obj -s $DIR/texture.mlx  -o  $DIR/tmp/temp1.obj -m vc  -o  $DIR/tmp/union.obj -m vc
 
-/Applications/meshlab.app/Contents/MacOS/meshlabserver -i $2 -i  $DIR/tmp/union.obj -s $DIR/texture2.mlx  -o  $DIR/tmp/temp1.obj -m vc  -o  $DIR/tmp/union.obj -m vc
+$MLABSERVER -i $2 -i  $DIR/tmp/union.obj -s $DIR/texture2.mlx  -o  $DIR/tmp/temp1.obj -m vc  -o  $DIR/tmp/union.obj -m vc
 
-/Applications/meshlab.app/Contents/MacOS/meshlabserver -i  $DIR/tmp/union.obj -s $DIR/normalize.mlx  -o  $DIR/tmp/union.obj -m vc 
+$MLABSERVER -i  $DIR/tmp/union.obj -s $DIR/normalize.mlx  -o  $DIR/tmp/union.obj -m vc 
 
 
 cp $DIR/tmp/union.obj $3
